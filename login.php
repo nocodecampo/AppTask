@@ -1,27 +1,35 @@
 <?php
 session_start();
-include('db.php');
+include 'db.php';
+
+$mensaje = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    try {
-        // Verificar credenciales con el nombre de usuario
-        $query = "SELECT * FROM users WHERE username = :username AND password = :password";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $password);
-        $stmt->execute();
+    if (!empty($username) && !empty($password)) {
+        try {
+            // Buscar el usuario en la base de datos
+            $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($stmt->rowCount() == 1) {
-            $_SESSION['username'] = $username;
-            header("Location: welcome.php");
-        } else {
-            echo "Credenciales incorrectas.";
+            // Verificar si el usuario existe y la contraseña es correcta
+            if ($user && password_verify($password, $user['password'])) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                header("Location: dashboard.php"); // Redirigir a la página de tareas
+                exit();
+            } else {
+                $mensaje = "Usuario o contraseña incorrectos.";
+            }
+        } catch (PDOException $e) {
+            $mensaje = "Error en la base de datos: " . $e->getMessage();
         }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+    } else {
+        $mensaje = "Por favor, complete todos los campos.";
     }
 }
 ?>
@@ -31,22 +39,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Login | AppTask</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Agrega tu CSS si tienes -->
 </head>
 <body>
-    <div class="container">
+    <div class="login-container">
         <h2>Iniciar Sesión</h2>
-        <form method="POST">
-            <label for="username">Nombre de Usuario</label>
-            <input type="text" name="username" required><br>
-
-            <label for="password">Contraseña</label>
-            <input type="password" name="password" required><br>
-
-            <button type="submit">Iniciar Sesión</button>
+        <?php if (!empty($mensaje)) echo "<p class='error'>$mensaje</p>"; ?>
+        <form action="login.php" method="POST">
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
         </form>
+        <p>¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
     </div>
 </body>
 </html>
-
