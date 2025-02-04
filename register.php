@@ -1,24 +1,34 @@
 <?php
-include('db.php');
+include('includes/db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Verificar si el usuario ya existe
-    $query = "SELECT * FROM users WHERE email = '$email'";
-    $result = mysqli_query($conn, $query);
+    try {
+        // Verificar si el usuario ya existe
+        $query = "SELECT * FROM users WHERE email = :email";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
 
-    if (mysqli_num_rows($result) > 0) {
-        echo "Este correo electrónico ya está registrado.";
-    } else {
-        // Insertar nuevo usuario
-        $query = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
-        if (mysqli_query($conn, $query)) {
-            echo "Registro exitoso. Ahora puedes <a href='login.php'>iniciar sesión</a>.";
+        if ($stmt->rowCount() > 0) {
+            echo "Este correo electrónico ya está registrado.";
         } else {
-            echo "Error al registrarse.";
+            // Insertar el nuevo usuario
+            $query = "INSERT INTO users (email, password) VALUES (:email, :password)";
+            $stmt = $conn->prepare($query);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+
+            if ($stmt->execute()) {
+                echo "Registro exitoso. Ahora puedes <a href='login.php'>iniciar sesión</a>.";
+            } else {
+                echo "Error al registrarse.";
+            }
         }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
@@ -29,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">

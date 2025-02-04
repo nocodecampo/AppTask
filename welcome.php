@@ -6,6 +6,8 @@ if (!isset($_SESSION['email'])) {
     exit();
 }
 
-echo "¡Bienvenido " . $_SESSION['email'] . "!<br>";
+$email = $_SESSION['email'];
+echo "¡Bienvenido, " . $email . "!<br>";
+echo "<a href='tasks.php'>Gestionar Tareas</a><br>";
 echo "<a href='logout.php'>Cerrar sesión</a>";
 ?>
