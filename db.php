@@ -12,4 +12,4 @@ try {
     // Mostrar error y detener la ejecución si la conexión falla
     die("Error de conexión: " . $e->getMessage());
 }
-?>
+?>  
