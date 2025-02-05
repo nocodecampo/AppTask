@@ -1,58 +1,79 @@
 <?php
-include('includes/db.php');
+session_start();
+include 'db.php';
+
+$mensaje = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password']);
+    $nombre = trim($_POST['nombre']);
+    $apellidos = trim($_POST['apellidos']);
 
-    try {
-        // Verificar si el usuario ya existe
-        $query = "SELECT * FROM users WHERE email = :email";
-        $stmt = $conn->prepare($query);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+    // Validar campos vacíos
+    if (empty($username) || empty($password) || empty($confirm_password) || empty($nombre) || empty($apellidos)) {
+        $mensaje = "Todos los campos son obligatorios.";
+    } elseif ($password !== $confirm_password) {
+        $mensaje = "Las contraseñas no coinciden.";
+    } else {
+        try {
+            // Verificar si el usuario ya existe
+            $stmt = $conn->prepare("SELECT users_id FROM users WHERE username = :username");
+            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            echo "Este correo electrónico ya está registrado.";
-        } else {
-            // Insertar el nuevo usuario
-            $query = "INSERT INTO users (email, password) VALUES (:email, :password)";
-            $stmt = $conn->prepare($query);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $password);
-
-            if ($stmt->execute()) {
-                echo "Registro exitoso. Ahora puedes <a href='login.php'>iniciar sesión</a>.";
+            if ($stmt->fetch()) {
+                $mensaje = "El nombre de usuario ya está en uso.";
             } else {
-                echo "Error al registrarse.";
+                // Encriptar la contraseña
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                // Insertar usuario en la base de datos
+                $stmt = $conn->prepare("INSERT INTO users (username, password, nombre, apellidos) VALUES (:username, :password, :nombre, :apellidos)");
+                $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+                $stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
+                $stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+                $stmt->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
+
+                if ($stmt->execute()) {
+                    header("Location: login.php"); // Redirigir al login tras registro exitoso
+                    exit();
+                } else {
+                    $mensaje = "Error al registrar usuario.";
+                }
             }
+        } catch (PDOException $e) {
+            $mensaje = "Error en la base de datos: " . $e->getMessage();
         }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Registro | AppTask</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <h2>Registrarse</h2>
-        <form method="POST">
-            <label for="email">Correo Electrónico</label>
-            <input type="email" name="email" required><br>
-
-            <label for="password">Contraseña</label>
-            <input type="password" name="password" required><br>
-
+    <div class="register-container">
+        <h2>Registro de Usuario</h2>
+        <?php if (!empty($mensaje)) echo "<p class='error'>$mensaje</p>"; ?>
+        <form action="register.php" method="POST">
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellidos" placeholder="Apellidos" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
             <button type="submit">Registrarse</button>
         </form>
+        <p>¿Ya tienes cuenta? <a href="login.php">Inicia sesión aquí</a></p>
     </div>
 </body>
+
 </html>
