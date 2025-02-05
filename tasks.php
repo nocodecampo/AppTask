@@ -70,7 +70,10 @@ try {
 <body>
     <div class="dashboard-container">
         <h2>👋 Bienvenido/a, <?= htmlspecialchars($_SESSION['username']); ?></h2>
-        <a href="logout.php" class="logout">Cerrar sesión</a>
+        <div class="user-actions">
+            <a href="logout.php" class="logout">Cerrar sesión</a>
+            <a href="edit_profile.php">Editar perfil</a>
+        </div>
 
         <h3>Crear Nueva Tarea</h3>
         <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
@@ -94,7 +97,7 @@ try {
                     <td><?= htmlspecialchars($tarea['descripcion']); ?></td>
                     <td><?= htmlspecialchars($tarea['estado']); ?></td>
                     <td>
-                        <a href="edit_task.php?id=<?= $tarea['tasks_id']; ?>">Editar</a>
+                        <a href="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>">Editar</a>
                         <a href="tasks.php?eliminar=<?= $tarea['tasks_id']; ?>">Eliminar</a>
                     </td>
                 </tr>
