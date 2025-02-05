@@ -97,7 +97,7 @@ try {
                     <td><?= htmlspecialchars($tarea['estado']); ?></td>
                     <td><?= htmlspecialchars($tarea['fecha_creacion']); ?></td>
                     <td>
-                        <a href="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>">Editar</a>
+                        <a href="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>">Editar | </a>
                         <a href="tasks.php?eliminar=<?= $tarea['tasks_id']; ?>">Eliminar</a>
                     </td>
                 </tr>
