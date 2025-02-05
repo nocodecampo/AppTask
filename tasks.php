@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["crear_tarea"])) {
 
     if (!empty($titulo)) {
         try {
-            $stmt = $conn->prepare("INSERT INTO tasks (users_id, titulo, descripcion, estado) VALUES (:users_id, :titulo, :descripcion, 'en proceso')");
+            $stmt = $conn->prepare("INSERT INTO tasks (users_id, titulo, descripcion, estado, fecha_creacion) VALUES (:users_id, :titulo, :descripcion, 'en proceso', NOW())");
             $stmt->bindParam(':users_id', $users_id, PDO::PARAM_INT);
             $stmt->bindParam(':titulo', $titulo, PDO::PARAM_STR);
             $stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
@@ -59,14 +59,12 @@ try {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tareas | AppTask</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
     <div class="dashboard-container">
         <h2>👋 Bienvenido/a, <?= htmlspecialchars($_SESSION['username']); ?></h2>
@@ -89,6 +87,7 @@ try {
                 <th>Título</th>
                 <th>Descripción</th>
                 <th>Estado</th>
+                <th>Fecha de Creación</th>
                 <th>Acciones</th>
             </tr>
             <?php foreach ($tareas as $tarea): ?>
@@ -96,6 +95,7 @@ try {
                     <td><?= htmlspecialchars($tarea['titulo']); ?></td>
                     <td><?= htmlspecialchars($tarea['descripcion']); ?></td>
                     <td><?= htmlspecialchars($tarea['estado']); ?></td>
+                    <td><?= htmlspecialchars($tarea['fecha_creacion']); ?></td>
                     <td>
                         <a href="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>">Editar</a>
                         <a href="tasks.php?eliminar=<?= $tarea['tasks_id']; ?>">Eliminar</a>
@@ -105,5 +105,4 @@ try {
         </table>
     </div>
 </body>
-
 </html>

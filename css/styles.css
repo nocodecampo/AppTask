@@ -1,266 +1,207 @@
-/* Reset de estilos básicos */
+/* Reset de márgenes y paddings */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
 }
 
-/* Fondo general de la página */
 body {
-    background: #f4f7fc; /* Fondo más suave y neutral */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
     color: #333;
-    font-size: 16px;
     line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
 }
 
-/* Contenedor principal */
 .container {
-    background-color: white; /* Fondo blanco para contraste */
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra más sutil */
-    max-width: 550px;
-    width: 100%;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-}
-
-.container:hover {
-    transform: scale(1.02); /* Escala sutil al pasar el mouse */
-}
-
-/* Encabezados generales */
-h1, h2, h3 {
-    color: #4a90e2; /* Azul suave para los títulos */
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-/* Estilo del texto descriptivo */
-p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 20px;
-    font-weight: 500;
-    line-height: 1.8;
-}
-
-/* Mensaje descriptivo en la página de inicio */
-.app-description {
-    font-size: 1.2rem;
-    color: #444;
-    text-align: center;
-    margin-bottom: 30px;
-    line-height: 1.8;
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 900px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); /* Sombra más suave */
+    text-align: center;
 }
 
-/* Enlaces */
+h1, h2, h3 {
+    color: #3e3e3e;
+    font-weight: 600;
+}
+
+.app-description {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #555;
+}
+
 a {
-    color: #4a90e2; /* Azul suave */
+    color: #007bff;
     text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 15px;
-    transition: color 0.3s ease-in-out;
 }
 
 a:hover {
-    color: #357ab7; /* Azul un poco más oscuro al pasar el mouse */
     text-decoration: underline;
 }
 
-/* Formularios */
+/* Estilo para el formulario de login y registro */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
 }
 
-/* Estilo de los labels */
-label {
-    font-size: 1rem;
-    color: #333;
-    font-weight: 600;
-}
-
-/* Estilo de los inputs */
 input[type="text"],
-input[type="email"],
 input[type="password"],
-input[type="number"],
 textarea {
-    padding: 15px;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     font-size: 1rem;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="number"]:focus,
-textarea:focus {
-    border-color: #4a90e2; /* Azul suave al enfocar */
-    box-shadow: 0 0 10px rgba(74, 144, 226, 0.4);
-    outline: none;
-}
-
-/* Botones */
 button {
-    background-color: #4a90e2; /* Azul neutro */
+    background-color: #007bff;
     color: white;
-    padding: 15px;
-    font-size: 1.1rem;
+    padding: 10px 20px;
     border: none;
-    border-radius: 12px;
+    border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
-    margin-top: 15px;
+    width: 100%;
 }
 
 button:hover {
-    background-color: #357ab7; /* Azul un poco más oscuro */
-    transform: translateY(-5px);
+    background-color: #0056b3;
 }
 
-/* Estilo de mensajes de error o éxito */
-.message {
-    text-align: center;
-    margin-top: 15px;
+.error {
+    color: #ff0000;
     font-size: 1rem;
-    font-weight: 600;
-}
-
-.message.success {
-    color: #28a745; /* Verde suave para éxito */
-}
-
-.message.error {
-    color: #dc3545; /* Rojo suave para errores */
-}
-
-/* Página de Tareas */
-.tasks-list {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 30px;
-}
-
-.task-item {
-    background-color: #ffffff;
-    padding: 20px;
     margin-bottom: 15px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra ligera */
-    transition: all 0.3s ease-in-out;
 }
 
-.task-item:hover {
-    background-color: #f1f5ff; /* Color suave de hover */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+.message {
+    color: #28a745;
+    font-size: 1rem;
+    margin-bottom: 15px;
 }
 
-/* Estilo de botones para tareas */
-.task-action {
-    background-color: #28a745; /* Verde suave */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-right: 15px;
-    transition: background-color 0.3s ease;
+/* Estilo para el dashboard */
+.dashboard-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.task-action:hover {
-    background-color: #218838; /* Verde más oscuro */
-}
-
-.task-delete {
-    background-color: #dc3545; /* Rojo suave */
-}
-
-.task-delete:hover {
-    background-color: #c82333; /* Rojo más oscuro */
-}
-
-/* Página Crear Tarea */
-.create-task-form {
+.user-actions {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-.create-task-form input,
-.create-task-form textarea {
-    padding: 15px;
+.user-actions a {
+    color: #007bff;
     font-size: 1rem;
-    border-radius: 12px;
-    border: 2px solid #ccc;
-    background-color: #f9f9f9;
-    transition: all 0.3s ease;
 }
 
-.create-task-form input:focus,
-.create-task-form textarea:focus {
-    border-color: #4a90e2; /* Azul suave */
-    box-shadow: 0 0 10px rgba(74, 144, 226, 0.4);
+.user-actions a:hover {
+    text-decoration: underline;
 }
 
-/* Botón de crear tarea */
-.create-task-button {
-    background-color: #4a90e2;
-    color: white;
-    padding: 15px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.create-task-button:hover {
-    background-color: #357ab7;
-}
-
-/* Página Bienvenida */
-.welcome-message {
-    font-size: 1.4rem;
-    color: #333;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
-/* Logout */
-.logout-button {
-    background-color: #f1c40f; /* Amarillo suave */
-    color: white;
-    padding: 15px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    display: block;
+table {
     width: 100%;
-    transition: background-color 0.3s ease;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-.logout-button:hover {
-    background-color: #e0a800; /* Amarillo un poco más oscuro */
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f7f7f7;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Estilo para las pantallas de perfil */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container input[type="text"] {
+    margin-bottom: 10px;
+}
+
+.profile-container a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.profile-container a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo de la página de registro */
+.register-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+/* Estilo para la tabla de tareas */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f7f7f7;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .register-container, .login-container, .dashboard-container, .profile-container {
+        width: 90%;
+    }
+
+    button {
+        width: 100%;
+    }
 }
