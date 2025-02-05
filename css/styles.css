@@ -239,16 +239,8 @@ button:hover {
     background-color: #357ab7;
 }
 
-/* Página Bienvenida */
-.welcome-message {
-    font-size: 1.4rem;
-    color: #333;
-    margin-bottom: 30px;
-    text-align: center;
-}
-
 /* Logout */
-.logout-button {
+a.logout {
     background-color: #f1c40f; /* Amarillo suave */
     color: white;
     padding: 15px;
@@ -261,6 +253,6 @@ button:hover {
     transition: background-color 0.3s ease;
 }
 
-.logout-button:hover {
+a.logout:hover {
     background-color: #e0a800; /* Amarillo un poco más oscuro */
 }

@@ -64,26 +64,32 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tareas | AppTask</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <!--<link rel="stylesheet" href="css/styles.css">-->
+    <link rel="stylesheet" href="css/tasks.css">
 </head>
 
 <body>
-    <div class="dashboard-container">
-        <h2>👋 Bienvenido/a, <?= htmlspecialchars($_SESSION['username']); ?></h2>
-        <div class="user-actions">
-            <a href="logout.php" class="logout">Cerrar sesión</a>
-            <a href="edit_profile.php">Editar perfil</a>
+    <header>
+        <div class="header_content">
+            <h2>👋 Bienvenido/a, <?= htmlspecialchars($_SESSION['username']); ?></h2>
+            <div class="user-actions">
+                <a href="logout.php" class="logout">Cerrar sesión</a>
+                <a href="edit_profile.php">Editar perfil</a>
+            </div>
         </div>
-
-        <h3>Crear Nueva Tarea</h3>
-        <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
-        <form action="tasks.php" method="POST">
-            <input type="text" name="titulo" placeholder="Título de la tarea" required>
-            <textarea name="descripcion" placeholder="Descripción (opcional)"></textarea>
-            <button type="submit" name="crear_tarea">Añadir Tarea</button>
-        </form>
-
-        <h3>📋 Mis Tareas</h3>
+    </header>
+    <div class="dashboard-container">
+        <div class="form-container">
+            <h3>Crear Nueva Tarea</h3>
+            <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
+            <form action="tasks.php" method="POST">
+                <input type="text" name="titulo" placeholder="Título de la tarea" required>
+                <textarea name="descripcion" placeholder="Descripción (opcional)"></textarea>
+                <button type="submit" name="crear_tarea" class="create-task-button">Añadir Tarea</button>
+            </form>
+        </div>
+        <div class="tareas-container">
+        <h3>Mis Tareas</h3>
         <table>
             <tr>
                 <th>Título</th>
@@ -103,6 +109,7 @@ try {
                 </tr>
             <?php endforeach; ?>
         </table>
+        </div>
     </div>
 </body>
 
