@@ -1,210 +1,179 @@
-/* Reset de márgenes y paddings */
-* {
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #d5f2e3; /* Fondo verde agua clarito */
+    color: #333; /* Color de texto oscuro pero no agresivo */
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f7f7f9; /* Fondo suave */
-    color: #333;
-    line-height: 1.6;
-    font-size: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    position: relative; /* Necesario para el posicionamiento absoluto del nombre de la app */
+    flex-direction: column; /* Esto asegura que el contenido no se sobreponga */
+}
+
+/* Nombre de la aplicación (en la parte superior izquierda) */
+.app-name {
+    position: absolute;
+    top: 20px; /* Distancia desde la parte superior */
+    left: 20px; /* Distancia desde la parte izquierda */
+    font-size: 1.8rem; /* Tamaño de fuente */
+    font-weight: bold; /* Para hacerlo un poco más destacado */
+    color: #4e4e4e; /* Gris suave para combinar con el diseño */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.app-name:hover {
+    color: #7a9b80; /* Cambio de color al pasar el ratón */
 }
 
 /* Contenedor principal */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    text-align: center;
-    background-color: #fff;
+    background-color: #ffffff; /* Fondo blanco para el contenido */
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Ajuste para que ocupe un buen espacio */
+    max-width: 500px; /* Maximo tamaño */
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box; /* Para no exceder los límites */
 }
 
-/* Encabezados */
-h1 {
-    font-size: 3rem;
-    color: #1f1f1f;
-    margin-bottom: 20px;
-    font-weight: 700;
+/* Títulos */
+h1, h2, h3 {
+    color: #4e4e4e; /* Gris suave para los títulos */
+    margin-bottom: 15px;
 }
 
-h2, h3 {
-    color: #3e3e3e;
-    font-weight: 600;
-}
-
-.app-description {
-    font-size: 1.2rem;
-    margin-top: 20px;
+/* Formularios y botones */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-size: 16px;
     color: #555;
-    margin-bottom: 30px;
-    line-height: 1.8;
-    font-weight: 400;
+    box-sizing: border-box; /* Para que el padding no haga que se desborde */
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
 }
 
 /* Botones */
 button {
-    background-color: #b30068; /* Color azul similar al de Bitrix24 */
-    color: white;
-    padding: 12px 30px;
+    background-color: #8aab8f; /* Verde suave */
+    color: #fff;
     border: none;
-    border-radius: 6px;
-    font-size: 1.1rem;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
     width: 100%;
-    transition: all 0.3s ease;
-    margin-top: 20px;
+    box-sizing: border-box;
 }
 
 button:hover {
-    background-color: #b30068;
-    transform: translateY(-2px);
+    background-color: #7a9b80; /* Color verde más oscuro en hover */
 }
 
-/* Estilo para los enlaces */
+/* Enlaces */
 a {
-    color: #b30068; /* Azul similar */
+    color: #7a9b80; /* Verde suave */
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: inline-block;
-    margin-top: 10px;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Formulario de login y registro */
-form {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    max-width: 450px;
-    width: 100%;
-    margin: 40px auto;
-}
-
-/* Campos de entrada */
-input[type="text"],
-input[type="password"],
-textarea {
-    width: 100%;
-    padding: 14px;
-    margin: 12px 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-/* Enfoque en los campos */
-input[type="text"]:focus,
-input[type="password"]:focus,
-textarea:focus {
-    border-color: #b30068; /* Azul al enfocar */
-    outline: none;
-}
-
-/* Mensajes de error y éxito */
-.error {
-    color: #FF4A00;
-    font-size: 1rem;
-    margin-bottom: 15px;
+/* Mensajes de error o éxito */
+.error, .message {
+    color: #e74c3c; /* Rojo para errores */
+    margin-top: 10px;
 }
 
 .message {
-    color: #28a745;
-    font-size: 1rem;
-    margin-bottom: 15px;
+    color: #2ecc71; /* Verde para mensajes exitosos */
 }
 
-/* Estilo para el dashboard */
-.dashboard-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-.user-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.user-actions a {
-    color: #b30068;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.user-actions a:hover {
-    text-decoration: underline;
-}
-
-/* Estilo para la tabla de tareas */
+/* Estilos para la tabla */
 table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
 }
 
-table th, table td {
-    padding: 14px;
+th, td {
+    padding: 12px;
     text-align: left;
-    font-size: 1rem;
+    border-bottom: 1px solid #ddd;
 }
 
-table th {
-    background-color: #b30068;
-    color: white;
+th {
+    background-color: #f4f4f4;
+    color: #555;
 }
 
-table tr:hover {
-    background-color: #f1f1f1;
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-/* Estilo para las pantallas de perfil */
-.profile-container {
-    max-width: 800px;
-    margin: 40px auto;
+td a {
+    color: #8aab8f;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el contenedor de perfil y dashboard */
+.profile-container, .dashboard-container {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
-/* Diseño responsivo */
-@media (max-width: 768px) {
-    .container {
-        padding: 20px;
-    }
+/* Estilos para el login y registro */
+.login-container, .register-container, .tasks-container, .edit-task-container {
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
 
-    .register-container, .login-container, .dashboard-container, .profile-container {
-        width: 90%;
-    }
+.login-container h2, .register-container h2, .tasks-container h2, .edit-task-container h2 {
+    color: #4e4e4e;
+    margin-bottom: 20px;
+}
 
-    button {
-        width: 100%;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .app-description {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
+/* Footer o enlaces de redirección */
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #777;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    padding: 10px 0;
 }

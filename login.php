@@ -45,6 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <!-- Nombre de la aplicación (en la parte superior derecha) -->
+    <div class="app-name">AppTask</div>
+
     <div class="login-container">
         <h2>Iniciar Sesión</h2>
         <?php if (!empty($mensaje)) echo "<p class='error'>$mensaje</p>"; ?>
@@ -55,6 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <p>¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
     </div>
+    <footer>
+        <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>

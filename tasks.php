@@ -66,6 +66,7 @@ try {
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="app-name">AppTask</div>
     <div class="dashboard-container">
         <h2>👋 Bienvenido/a, <?= htmlspecialchars($_SESSION['username']); ?></h2>
         <div class="user-actions">
@@ -104,5 +105,8 @@ try {
             <?php endforeach; ?>
         </table>
     </div>
+    <footer>
+        <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

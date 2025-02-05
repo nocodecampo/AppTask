@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="app-name">AppTask</div>
     <div class="dashboard-container">
         <h2>👋 Editar Tarea</h2>
 
@@ -73,5 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit">Actualizar Tarea</button>
         </form>
     </div>
+    <footer>
+        <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

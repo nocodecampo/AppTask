@@ -54,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <div class="app-name">AppTask</div>
     <div class="profile-container">
         <h2>Editar Perfil</h2>
         <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
@@ -66,6 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <a href="tasks.php">⬅️ Volver a Tareas</a>
     </div>
+    <footer>
+        <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>
