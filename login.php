@@ -45,19 +45,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- Nombre de la aplicación (en la parte superior derecha) -->
-    <div class="app-name">AppTask</div>
-
-    <div class="login-container">
-        <h2>Iniciar Sesión</h2>
-        <?php if (!empty($mensaje)) echo "<p class='error'>$mensaje</p>"; ?>
-        <form action="login.php" method="POST">
-            <input type="text" name="username" placeholder="Usuario" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <button type="submit">Ingresar</button>
-        </form>
-        <p>¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
-    </div>
+    <header>
+        <div class="logo-container">
+            <a href="index.php" class="logo-link"><img src="imgs/logo.jpg" alt="Apptask" class="logo"></a>
+            <div class="app-name">AppTask</div>
+        </div>
+    </header>
+    <main>
+        <section class="main-section">
+            <div class="login-container">
+                <h2>Iniciar Sesión</h2>
+                <?php if (!empty($mensaje)) echo "<p class='error'>$mensaje</p>"; ?>
+                <form action="login.php" method="POST">
+                    <input type="text" name="username" placeholder="Usuario" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <button type="submit">Ingresar</button>
+                </form>
+                <p>¿No tienes cuenta? <a href="register.php">Regístrate aquí</a></p>
+            </div>
+        </section>
+    </main>
     <footer>
         <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
     </footer>

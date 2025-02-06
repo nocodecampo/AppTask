@@ -54,19 +54,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class="app-name">AppTask</div>
-    <div class="profile-container">
-        <h2>Editar Perfil</h2>
-        <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
+    <header>
+        <div class="logo-container">
+            <a href="index.php" class="logo-link"><img src="imgs/logo.jpg" alt="Apptask" class="logo"></a>
+            <div class="app-name">AppTask</div>
+        </div>
+    </header>
+    <main>
+        <section class="main-section">
+            <div class="profile-container">
+                <h2>Editar Perfil</h2>
+                <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
 
-        <form action="edit_profile.php" method="POST">
-            <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']); ?>" required>
-            <input type="text" name="apellidos" value="<?= htmlspecialchars($usuario['apellidos']); ?>" required>
-            <button type="submit">Guardar Cambios</button>
-        </form>
+                <form action="edit_profile.php" method="POST">
+                    <input type="text" name="nombre" value="<?= htmlspecialchars($usuario['nombre']); ?>" required>
+                    <input type="text" name="apellidos" value="<?= htmlspecialchars($usuario['apellidos']); ?>" required>
+                    <button type="submit">Guardar Cambios</button>
+                </form>
 
-        <a href="tasks.php">⬅️ Volver a Tareas</a>
-    </div>
+                <a href="tasks.php">Volver a Tareas</a>
+            </div>
+        </section>
+    </main>
     <footer>
         <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
     </footer>

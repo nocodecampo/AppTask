@@ -53,29 +53,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Tarea | AppTask</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <div class="app-name">AppTask</div>
-    <div class="dashboard-container">
-        <h2>👋 Editar Tarea</h2>
 
-        <form action="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>" method="POST">
-            <input type="text" name="titulo" value="<?= htmlspecialchars($tarea['titulo']); ?>" required>
-            <textarea name="descripcion"><?= htmlspecialchars($tarea['descripcion']); ?></textarea>
-            <select name="estado">
-                <option value="en proceso" <?= $tarea['estado'] == 'en proceso' ? 'selected' : ''; ?>>En proceso</option>
-                <option value="terminada" <?= $tarea['estado'] == 'terminada' ? 'selected' : ''; ?>>Terminada</option>
-            </select>
-            <button type="submit">Actualizar Tarea</button>
-        </form>
-    </div>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="index.php" class="logo-link"><img src="imgs/logo.jpg" alt="Apptask" class="logo"></a>
+            <div class="app-name">AppTask</div>
+        </div>
+    </header>
+    <main>
+        <section class="main-section">
+            <div class="dashboard-container editable">
+                <h2>✏️ Editar Tarea</h2>
+
+                <form action="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>" method="POST">
+                    <input type="text" name="titulo" value="<?= htmlspecialchars($tarea['titulo']); ?>" required>
+                    <textarea name="descripcion"><?= htmlspecialchars($tarea['descripcion']); ?></textarea>
+                    <select name="estado">
+                        <option value="en proceso" <?= $tarea['estado'] == 'en proceso' ? 'selected' : ''; ?>>En proceso</option>
+                        <option value="terminada" <?= $tarea['estado'] == 'terminada' ? 'selected' : ''; ?>>Terminada</option>
+                    </select>
+                    <button type="submit">Actualizar Tarea</button>
+                </form>
+            </div>
+        </section>
+    </main>
     <footer>
         <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>

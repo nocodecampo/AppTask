@@ -61,21 +61,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    
-    <div class="app-name">AppTask</div>
-    <div class="register-container">
-        <h2>Registro de Usuario</h2>
-        <?php if (!empty($mensaje)) echo "<p class='error'>$mensaje</p>"; ?>
-        <form action="register.php" method="POST">
-            <input type="text" name="username" placeholder="Usuario" required>
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="text" name="apellidos" placeholder="Apellidos" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
-            <button type="submit">Registrarse</button>
-        </form>
-        <p>¿Ya tienes cuenta? <a href="login.php">Inicia sesión aquí</a></p>
-    </div>
+
+    <header>
+        <div class="logo-container">
+            <a href="index.php" class="logo-link"><img src="imgs/logo.jpg" alt="Apptask" class="logo"></a>
+            <div class="app-name">AppTask</div>
+        </div>
+    </header>
+    <main>
+        <section class="main-section">
+            <div class="register-container">
+                <h2>Registro de Usuario</h2>
+                <?php if (!empty($mensaje)) echo "<p class='error'>$mensaje</p>"; ?>
+                <form action="register.php" method="POST">
+                    <input type="text" name="username" placeholder="Usuario" required>
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                    <input type="text" name="apellidos" placeholder="Apellidos" required>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                    <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
+                    <button type="submit">Registrarse</button>
+                </form>
+                <p>¿Ya tienes cuenta? <a href="login.php">Inicia sesión aquí</a></p>
+            </div>
+        </section>
+    </main>
     <footer>
         <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
     </footer>

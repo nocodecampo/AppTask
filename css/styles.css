@@ -1,32 +1,80 @@
 /* Estilos generales */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
 body {
-    font-family: 'Arial', sans-serif;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #d5f2e3; /* Fondo verde agua clarito */
     color: #333; /* Color de texto oscuro pero no agresivo */
     margin: 0;
     padding: 0;
+    
+}
+header{
+    padding: 16px 24px;
+    width:100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative; /* Necesario para el posicionamiento absoluto del nombre de la app */
-    flex-direction: column; /* Esto asegura que el contenido no se sobreponga */
+    justify-content: space-between;
+    box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: darkolivegreen;
+
 }
 
-/* Nombre de la aplicación (en la parte superior izquierda) */
+.logo-container{
+    overflow: hidden;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+header a.logo-link{
+    display: inline-block;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f1e8c7;
+}
+
+.logo{
+    object-fit: contain;
+    width: 60px;
+    height: 60px;
+}
+
 .app-name {
-    position: absolute;
-    top: 20px; /* Distancia desde la parte superior */
-    left: 20px; /* Distancia desde la parte izquierda */
     font-size: 1.8rem; /* Tamaño de fuente */
     font-weight: bold; /* Para hacerlo un poco más destacado */
-    color: #4e4e4e; /* Gris suave para combinar con el diseño */
+    color: #ffffff; /* Gris suave para combinar con el diseño */
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .app-name:hover {
     color: #7a9b80; /* Cambio de color al pasar el ratón */
+}
+main{
+    width: 100%;
+    height: 90vh;
+    padding: 120px 0 0 0;
+}
+.main-section{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0 32px;
+}
+
+.task-section{
+    padding: 0 32px;
+    height: 85vh;
+    overflow-x: auto;
 }
 
 /* Contenedor principal */
@@ -47,6 +95,46 @@ h1, h2, h3 {
     margin-bottom: 15px;
 }
 
+h1.welcome-title{
+    font-size: 32px;
+    color: darkolivegreen;
+}
+
+p.app-description{
+    line-height: 1.3;
+    padding: 0 0 24px 0;
+}
+
+.options-container{
+    padding: 24px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-top: dashed 1px darkolivegreen;
+}
+
+.buttons-wrapper
+{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.login-button{
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #d5f2e3;
+    border: solid 1px darkolivegreen;
+    border-radius: 4px;
+    color: darkolivegreen;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover{
+    background-color: darkolivegreen ;
+    color: #d5f2e3;
+}
+
 /* Formularios y botones */
 input[type="text"],
 input[type="password"],
@@ -61,6 +149,11 @@ textarea {
     font-size: 16px;
     color: #555;
     box-sizing: border-box; /* Para que el padding no haga que se desborde */
+}
+
+select{
+    width: 100%;
+    padding: 8px;
 }
 
 textarea {
@@ -80,10 +173,16 @@ button {
     transition: background-color 0.3s ease;
     width: 100%;
     box-sizing: border-box;
+    margin:8px 0;
 }
 
 button:hover {
-    background-color: #7a9b80; /* Color verde más oscuro en hover */
+    background-color: darkolivegreen; /* Color verde más oscuro en hover */
+    text-decoration: none;
+}
+
+.add-task{
+    max-width: 250px;
 }
 
 /* Enlaces */
@@ -93,13 +192,31 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    color: darkolivegreen;
 }
 
 /* Mensajes de error o éxito */
 .error, .message {
     color: #e74c3c; /* Rojo para errores */
     margin-top: 10px;
+}
+
+.logout{
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #d5f2e3;
+    border: solid 1px #e74c3c;
+    border-radius: 4px;
+    color: #e74c3c;
+    transition: background-color 0.3s;
+}
+.logout:hover{
+    background-color: #e74c3c;
+    border: solid 1px #e74c3c;
+    border-radius: 4px;
+    color: #d5f2e3;
+    transition: background-color 0.3s;
 }
 
 .message {
@@ -139,7 +256,7 @@ td a:hover {
 }
 
 /* Estilos para el contenedor de perfil y dashboard */
-.profile-container, .dashboard-container {
+.profile-container {
     width: 100%;
     max-width: 500px;
     margin: auto;
@@ -148,6 +265,52 @@ td a:hover {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+}
+
+.dashboard-container {
+    width: 100%;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.editable{
+    max-width: 500px;
+}
+
+.user-info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 16px 0;
+    border-bottom: dashed 1px darkolivegreen;
+}
+.user-actions{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nueva-tarea-form{
+    padding: 16px 32px;
+    border-bottom: dashed 1px darkolivegreen;
+}
+
+.nueva-tarea-form form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items:baseline;
+    gap: 24px;
+}
+
+.tareas-container
+{
+    padding: 16px 0;
 }
 
 /* Estilos para el login y registro */
@@ -173,7 +336,108 @@ footer {
     font-size: 14px;
     color: #777;
     width: 100%;
-    position: relative;
+    position: fixed;
     bottom: 0;
-    padding: 10px 0;
+    padding: 16px 0;
+    border-top: dashed 1px darkolivegreen;
+}
+
+@media screen and (max-width: 768px) {
+
+    header{
+        padding: 8px 24px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logo{
+        object-fit: contain;
+        width: 40px;
+        height: 40px;
+    }
+
+    main{
+       padding: 80px 0 0 0;
+    }
+
+    .main-section{
+        padding: 0 16px;
+    }
+
+    .task-section{
+        padding: 0 16px;
+        height: 84vh;
+        overflow-x: auto;
+    }
+
+    .dashboard-container {
+        padding: 8px;
+    }
+
+    .user-info-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0 16px 0;
+        border-bottom: dashed 1px darkolivegreen;
+    }
+
+    .nueva-tarea-form{
+        padding: 16px;
+    }
+
+    .nueva-tarea-form form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: space-between;
+        align-items:baseline;
+        gap: 8px;
+    }
+
+    .add-task{
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Ocultar encabezados en móviles */
+    thead {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: white;
+        padding: 10px;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: none;
+        position: relative;
+    }
+
+    /* Agregar etiquetas antes del contenido */
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #555;
+    }
+
+    /* Acciones en bloque */
+    td:last-child {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start;
+    }
 }

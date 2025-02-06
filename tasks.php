@@ -59,54 +59,73 @@ try {
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tareas | AppTask</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="app-name">AppTask</div>
-    <div class="dashboard-container">
-        <h2>👋 Bienvenido/a, <?= htmlspecialchars($_SESSION['username']); ?></h2>
-        <div class="user-actions">
-            <a href="logout.php" class="logout">Cerrar sesión</a>
-            <a href="edit_profile.php">Editar perfil</a>
+    <header>
+        <div class="logo-container">
+            <a href="index.php" class="logo-link"><img src="imgs/logo.jpg" alt="Apptask" class="logo"></a>
+            <div class="app-name">AppTask</div>
         </div>
+    </header>
+    <main>
+        <section class="task-section">
+            <div class="dashboard-container">
+                <div class="user-info-container">
+                    <h2>👋 Bienvenido/a, <?= htmlspecialchars($_SESSION['username']); ?></h2>
+                    <div class="user-actions">
+                        <a href="edit_profile.php">Editar perfil</a>
+                        <a href="logout.php" class="logout">Cerrar sesión</a>
 
-        <h3>Crear Nueva Tarea</h3>
-        <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
-        <form action="tasks.php" method="POST">
-            <input type="text" name="titulo" placeholder="Título de la tarea" required>
-            <textarea name="descripcion" placeholder="Descripción (opcional)"></textarea>
-            <button type="submit" name="crear_tarea">Añadir Tarea</button>
-        </form>
-
-        <h3>📋 Mis Tareas</h3>
-        <table>
-            <tr>
-                <th>Título</th>
-                <th>Descripción</th>
-                <th>Estado</th>
-                <th>Fecha de Creación</th>
-                <th>Acciones</th>
-            </tr>
-            <?php foreach ($tareas as $tarea): ?>
-                <tr>
-                    <td><?= htmlspecialchars($tarea['titulo']); ?></td>
-                    <td><?= htmlspecialchars($tarea['descripcion']); ?></td>
-                    <td><?= htmlspecialchars($tarea['estado']); ?></td>
-                    <td><?= htmlspecialchars($tarea['fecha_creacion']); ?></td>
-                    <td>
-                        <a href="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>">Editar |</a>
-                        <a href="tasks.php?eliminar=<?= $tarea['tasks_id']; ?>"> Eliminar</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </div>
+                    </div>
+                </div>
+                <div class="nueva-tarea-form">
+                    <h3>Crear Nueva Tarea</h3>
+                    <?php if (!empty($mensaje)) echo "<p class='message'>$mensaje</p>"; ?>
+                    <form action="tasks.php" method="POST">
+                        <input type="text" name="titulo" placeholder="Título de la tarea" required>
+                        <textarea name="descripcion" placeholder="Descripción (opcional)"></textarea>
+                        <button type="submit" name="crear_tarea" class="add-task">Añadir Tarea</button>
+                    </form>
+                </div>
+                <div class="tareas-container">
+                    <h3>📋 Mis Tareas</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                                <th>Fecha de Creación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <?php foreach ($tareas as $tarea): ?>
+                            <tr>
+                                <td data-label="Título"><?= htmlspecialchars($tarea['titulo']); ?></td>
+                                <td data-label="Descripción"><?= htmlspecialchars($tarea['descripcion']); ?></td>
+                                <td data-label="Estado"><?= htmlspecialchars($tarea['estado']); ?></td>
+                                <td data-label="Fecha"><?= htmlspecialchars($tarea['fecha_creacion']); ?></td>
+                                <td data-label="Acciones">
+                                    <a href="edit_task.php?tasks_id=<?= $tarea['tasks_id']; ?>">Editar |</a>
+                                    <a href="tasks.php?eliminar=<?= $tarea['tasks_id']; ?>"> Eliminar</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
     <footer>
         <p>&copy; 2025 AppTask. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>
