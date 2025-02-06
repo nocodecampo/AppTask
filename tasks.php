@@ -4,14 +4,14 @@ include 'db.php';
 
 // Verificar si el usuario está logueado
 if (!isset($_SESSION['users_id'])) {
-    header("Location: login.php");
+    header("Location: login.php");  
     exit();
 }
 
 $users_id = $_SESSION['users_id'];
 $mensaje = "";
 
-// 🔹 CREAR TAREA
+// CREAR TAREA
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["crear_tarea"])) {
     $titulo = trim($_POST["titulo"]);
     $descripcion = trim($_POST["descripcion"]);
